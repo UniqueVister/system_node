@@ -5,14 +5,14 @@
  app.use(bodyParser.urlencoded({
  	extended:true
  }));
- var mysql = require('mysql');
- var connection = mysql.createConnection({
- 	host:'127.0.0.1',
- 	user:'root',
- 	password:'root',
- 	database:'test',
- });
- connection.connect();
+ // var mysql = require('mysql');
+ // var connection = mysql.createConnection({
+ // 	host:'127.0.0.1',
+ // 	user:'root',
+ // 	password:'root',
+ // 	database:'test',
+ // });
+ // connection.connect();
 
  app.all('*',function(req,res,next){
     res.header("Access-Control-Allow-Origin", "*");
@@ -22,9 +22,8 @@
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
- app.get('/user',function(req,res) {
- 	var sql = "select * from weblist"
- 	connection.query(sql,function (error,result,fields) {
+ app.get('/data.json',function(req,res) {
+ 	connection.query(sql,function (err,result,fields) {
  		res.send(result);
  	})
  })
